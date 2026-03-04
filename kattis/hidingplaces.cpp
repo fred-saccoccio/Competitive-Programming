@@ -10,7 +10,7 @@ class Chessboard {
     void SetCell(int rank, int file, char val);
     pair<int,int> Translate(string cell);
     string Normalize(int rank, int file);
-    vector<string> HidingPlaces(string cell); 
+    pair<int,vector<string>> HidingPlaces(string cell); 
   
   private:
     vector<pair<int,int>> KnightWalk(int rank, int file, int step);
@@ -80,8 +80,8 @@ string Chessboard::Normalize(int rank, int file) {
   return retVal;
 }
 
-vector<string> Chessboard::HidingPlaces(string cell) {
-  vector<string> retVal;
+pair<int,vector<string>> Chessboard::HidingPlaces(string cell) {
+  pair<int,vector<string>> retVal;
   pair<int,int> rankFile = Translate(cell);
 
   ResetBoard();
@@ -102,11 +102,11 @@ vector<string> Chessboard::HidingPlaces(string cell) {
     
     step++;
 
-    Display();
+//    Display();
 
   } while(cells.size() != 0);
 
-  cout << "max jumps = " << (step-1) << "\n";
+//  cout << "max jumps = " << (step-1) << "\n";
   int max = step-1;
   vector<pair<int,int>> vAns;
   for (int i = 7; i >= 0; i--) {
@@ -117,17 +117,19 @@ vector<string> Chessboard::HidingPlaces(string cell) {
     }
   }
 
-  cout << "ANSWER = ";
+  vector<string> v;
   for(auto& c:vAns) {
-    cout << Normalize(c.first, c.second) << " " ;
+    v.push_back(Normalize(c.first, c.second));
+    // cout << Normalize(c.first, c.second) << " " ;
   }
-  cout << "\n";
+
+  retVal = {step-1, v};
 
   return retVal;
 }
 
 vector<pair<int,int>>Chessboard::KnightWalk(int rank, int file, int step) {
-  printf("KnightWalk(%d,%d,%d)\n", rank, file, step);
+//  printf("KnightWalk(%d,%d,%d)\n", rank, file, step);
   
   vector<pair<int,int>> impactedCells;
   
@@ -146,12 +148,26 @@ vector<pair<int,int>>Chessboard::KnightWalk(int rank, int file, int step) {
 }
 
 int main (int argc, char *argv[]) {
+  int nbTestCases = 0;
   Chessboard cb;
-  cb.HidingPlaces("d5");
+  cin >> nbTestCases;
+  cin.ignore();
 
-  cout << "################################################################################\n";
+  for(int index = 0; index < nbTestCases; index++) {
+    string input;
+    getline(cin, input);
+    pair<int,vector<string>> ans = cb.HidingPlaces(input);
 
-  cb.HidingPlaces("a1");
+    cout << ans.first << " ";
+    
+    for(size_t index = 0; index < ans.second.size(); index++) {
+      cout << ans.second[index];
+      if(index != ans.second.size()-1)
+        cout << " ";
+    }
+    cout << "\n";
+  }
 
   return 0;
 }
+
