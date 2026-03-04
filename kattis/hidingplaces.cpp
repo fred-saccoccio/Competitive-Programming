@@ -102,11 +102,8 @@ pair<int,vector<string>> Chessboard::HidingPlaces(string cell) {
     
     step++;
 
-//    Display();
-
   } while(cells.size() != 0);
 
-//  cout << "max jumps = " << (step-1) << "\n";
   int max = step-1;
   vector<pair<int,int>> vAns;
   for (int i = 7; i >= 0; i--) {
@@ -120,7 +117,6 @@ pair<int,vector<string>> Chessboard::HidingPlaces(string cell) {
   vector<string> v;
   for(auto& c:vAns) {
     v.push_back(Normalize(c.first, c.second));
-    // cout << Normalize(c.first, c.second) << " " ;
   }
 
   retVal = {step-1, v};
@@ -129,8 +125,6 @@ pair<int,vector<string>> Chessboard::HidingPlaces(string cell) {
 }
 
 vector<pair<int,int>>Chessboard::KnightWalk(int rank, int file, int step) {
-//  printf("KnightWalk(%d,%d,%d)\n", rank, file, step);
-  
   vector<pair<int,int>> impactedCells;
   
   for(size_t index = 0; index < deltasFile.size(); index++) {
