@@ -1,8 +1,13 @@
 # Tips
 
 ## Neovim snippet
+### Description
+A quick an easy neovim command to automatically generate a C++ template code.<br/>
+Just typeset the following command at neovim `:CpBootstrap`.
+
+## How 
 The following code must be added at the end of your init.lua in neovim.
-It adds to neovim the CpBootstrap command and this command appends the folowwing C++ code :
+It adds to neovim the `CpBootstrap` command and this command appends the folowwing C++ code :
 ```cpp
 #include<bits/stdc++.h>
 
