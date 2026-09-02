@@ -65,9 +65,14 @@ vim.api.nvim_create_user_command("CpBootstrap", function()
 end, {})
 ```
 
-## Python ; debug without stdin problems
+## Python : debug without stdin problems
 ### Description
+In competitive programming, input data are usually read from the standard input (stdin).
+When using pdb to debug a python script, it is necessary to make the distinction between
+the debugged script's stdin and pdb's stdin.
+The script below fixes this problem.
 ### Source code
+Save the following script as `pdbin.py`.
 ```python
 import sys
 import pdb
@@ -118,7 +123,5 @@ with open(script, "rb") as f:
     code = compile(f.read(), script, "exec")
 
 debugger.run(code)
-```
-
 ```
 
