@@ -6,7 +6,7 @@
 A quick an easy neovim command to automatically generate a C++ template code.<br/>
 Just typeset the following command at the neovim prompt in command mode :
 
-`:CpBootstrap` 
+`:CppBootstrap` 
 
 and you will have the code below : 
 
@@ -28,11 +28,11 @@ int main (int argc, char *argv[]) {
 
 ## Source code
 The following code must be added at the end of your init.lua in neovim.
-It adds to neovim the `CpBootstrap` command and this command appends the folowwing C++ code :
+It adds to neovim the `CppBootstrap` command and this command appends the folowwing C++ code :
 
 Here is the lua code (written with Chatgpt's help :):
 ```lua
-vim.api.nvim_create_user_command("CpBootstrap", function()
+vim.api.nvim_create_user_command("CppBootstrap", function()
 
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 
@@ -73,7 +73,7 @@ end, {})
 ```
 
 ## Usage
-Just typeset the command `CpBootstrap` at the neovim command prompt.
+Just typeset the command `CppBootstrap` at the neovim command prompt.
 
 ## Python : debug without stdin problems
 
