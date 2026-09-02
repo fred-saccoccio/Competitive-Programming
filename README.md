@@ -1,6 +1,6 @@
 # Tips
 
-## Neovim snippet
+## Neovim snippet for C++
 ### Description
 A quick an easy neovim command to automatically generate a C++ template code.<br/>
 Just typeset the following command at neovim `:CpBootstrap`.
@@ -63,5 +63,62 @@ vim.api.nvim_create_user_command("CpBootstrap", function()
     end
 
 end, {})
+```
+
+## Python ; debug without stdin problems
+### Description
+### Source code
+```python
+import sys
+import pdb
+import os
+
+if len(sys.argv) < 3:
+    print(f"Usage: {sys.argv[0]} <script.py> <input_file> [arguments...]")
+    sys.exit(1)
+
+script = os.path.abspath(sys.argv[1])
+input_file = sys.argv[2]
+script_args = sys.argv[3:]
+
+# --------------------------------------------------
+# stdin for the DEBUGGEE
+# --------------------------------------------------
+program_stdin = open(input_file, "r", encoding="utf-8")
+
+# --------------------------------------------------
+# stdin for the DEBUGGER : adapt to the operating system
+# --------------------------------------------------
+if os.name == "nt":
+    debugger_stdin = open("CONIN$", "r")
+else:
+    debugger_stdin = open("/dev/tty", "r")
+
+# --------------------------------------------------
+# Configuring the debugged program
+# --------------------------------------------------
+sys.stdin = program_stdin
+sys.argv = [script] + script_args
+
+# --------------------------------------------------
+# Configuring pdb
+debugger = pdb.Pdb(
+    stdin=debugger_stdin,
+    stdout=sys.stdout
+)
+
+# Tell pdb the main file to debug 
+debugger.mainpyfile = debugger.canonic(script)
+debugger._wait_for_mainpyfile = True
+
+# --------------------------------------------------
+# Lauch !
+# --------------------------------------------------
+with open(script, "rb") as f:
+    code = compile(f.read(), script, "exec")
+
+debugger.run(code)
+```
+
 ```
 
