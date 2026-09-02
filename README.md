@@ -78,10 +78,9 @@ Just typeset the command `CpBootstrap` at the neovim command prompt.
 ## Python : debug without stdin problems
 
 ### Description
-In competitive programming, input data are usually read from the standard input (stdin).
-
-When using pdb to debug a python script, it is necessary to make the distinction between
-* the debugged script's stdin
+In competitive programming, input data are usually read from the standard input (stdin).<br/>
+When using pdb to debug a python script, it is necessary to make the distinction between:
+* the debugged script's stdin,
 * pdb's own stdin.
 
 The script below fixes this problem by cleanly redirecting a file into stdin for the debuggee only
