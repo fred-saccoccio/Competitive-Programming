@@ -129,7 +129,7 @@ debugger.mainpyfile = debugger.canonic(script)
 debugger._wait_for_mainpyfile = True
 
 # --------------------------------------------------
-# Lauch !
+# Launch !
 # --------------------------------------------------
 with open(script, "rb") as f:
     code = compile(f.read(), script, "exec")
