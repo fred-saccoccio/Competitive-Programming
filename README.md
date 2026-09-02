@@ -79,7 +79,7 @@ Just typeset the command `CpBootstrap` at the neovim command prompt.
 
 ### Description
 In competitive programming, input data are usually read from the standard input (stdin).<br/>
-When using pdb to debug a python script, it is necessary to make the distinction between:
+When using pdb to debug a python script, it is necessary to make the distinction between :
 * the debugged script's stdin,
 * pdb's own stdin.
 
