@@ -1,13 +1,15 @@
 # Tips
 
-## Neovim snippet for C++
+## Neovim boostrap snippet for C++
+
 ### Description
 A quick an easy neovim command to automatically generate a C++ template code.<br/>
-Just typeset the following command at neovim `:CpBootstrap`.
+Just typeset the following command at the neovim prompt in command mode :
 
-## How 
-The following code must be added at the end of your init.lua in neovim.
-It adds to neovim the `CpBootstrap` command and this command appends the folowwing C++ code :
+`:CpBootstrap` 
+
+and you will have the code below : 
+
 ```cpp
 #include<bits/stdc++.h>
 
@@ -22,6 +24,11 @@ int main (int argc, char *argv[]) {
   return 0;
 }
 ```
+
+
+## Source code
+The following code must be added at the end of your init.lua in neovim.
+It adds to neovim the `CpBootstrap` command and this command appends the folowwing C++ code :
 
 Here is the lua code (written with Chatgpt's help :):
 ```lua
@@ -65,12 +72,17 @@ vim.api.nvim_create_user_command("CpBootstrap", function()
 end, {})
 ```
 
+## Usage
+Just typeset the command `CpBootstrap` at the neovim command prompt.
+
 ## Python : debug without stdin problems
+
 ### Description
 In competitive programming, input data are usually read from the standard input (stdin).
 When using pdb to debug a python script, it is necessary to make the distinction between
 the debugged script's stdin and pdb's stdin.
 The script below fixes this problem.
+
 ### Source code
 Save the following script as `pdbin.py`.
 ```python
@@ -124,4 +136,9 @@ with open(script, "rb") as f:
 
 debugger.run(code)
 ```
-
+### Usage
+`python <script.py> <input_file> [arguments...]`
+where :
+* `<script.py>` : [mandatory] The python script to debug with pdb.
+* `<input_file>` : [mandatory] The file to be injected as stdin.
+* `[arguments...]` : [optional] The commend line arguments for `<script.py>`.
