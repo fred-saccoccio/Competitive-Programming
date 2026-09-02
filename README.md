@@ -140,7 +140,7 @@ with open(script, "rb") as f:
 debugger.run(code)
 ```
 ### Usage
-`python <script.py> <input_file> [arguments...]`
+`python pdbin.py <script.py> <input_file> [arguments...]`
 where :
 * `<script.py>` : [mandatory] The python script to debug with pdb.
 * `<input_file>` : [mandatory] The file to be injected as stdin.
